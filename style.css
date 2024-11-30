@@ -167,7 +167,7 @@ button:hover {
     height: 21px;
     cursor: pointer;
     position: fixed;
-    top: 20px;
+    top: 30px;
     left: 20px; /* アイコンを画面左上に配置 */
     z-index: 1500; /* アイコンを最前面に表示 */
     background-color: #333; /* メニューと統一された背景色 */
@@ -187,7 +187,7 @@ button:hover {
 /* メニューのスタイル */
 .menu {
     position: fixed;
-    top: 60px; /* メニューの開始位置をアイコンの下に配置 */
+    top: 70px; /* メニューの開始位置をアイコンの下に配置 */
     left: -250px; /* 初期状態ではメニューが画面外に隠れる */
     width: 250px; /* メニューの幅 */
     height: calc(100% - 60px); /* メニューの高さをアイコンの下から画面いっぱいに表示 */
