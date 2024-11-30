@@ -260,3 +260,152 @@ body.dark-mode button {
     background-color: #555;
     color: white;
 }
+
+/* レスポンシブ対応 - スマホ・タブレット用 */
+
+/* 画面幅が768px以下（タブレットとスマホ用） */
+@media screen and (max-width: 768px) {
+    /* コンテナの幅調整 */
+    .container {
+        width: 95%; /* 画面幅に対して広くする */
+        padding: 15px;
+    }
+
+    /* 見出しのフォントサイズ */
+    h1 {
+        font-size: 20px;
+    }
+
+    /* 入力フォームのスタイル */
+    input[type="text"],
+    select {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* メニューアイコンを表示 */
+    .menu-toggle {
+        display: block;
+        top: 15px; /* 少し上に配置 */
+        left: 15px; /* 左に配置 */
+    }
+
+    /* メニューのスタイル */
+    .menu {
+        top: 50px; /* メニューをアイコンの下に配置 */
+        width: 100%; /* メニューをフル幅にする */
+        height: 100%;
+    }
+
+    /* メニューリストの縦並び */
+    .menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu ul li {
+        padding: 10px;
+        width: 100%;
+        text-align: center; /* テキストを中央揃え */
+    }
+
+    /* メニューアイコンが開いた状態 */
+    .menu-toggle.open .bar:nth-child(1) {
+        top: 6px; /* 上のバーを少し調整 */
+    }
+
+    .menu-toggle.open .bar:nth-child(3) {
+        top: -6px; /* 下のバーを少し調整 */
+    }
+
+    /* 結果カードのレイアウト調整 */
+    .result-container {
+        grid-template-columns: 1fr; /* 1列で表示 */
+        gap: 15px;
+    }
+
+    /* 結果カードのパディングとフォントサイズ */
+    .result-card {
+        padding: 15px;
+    }
+
+    /* スキルカードのフォントサイズ調整 */
+    .skill-card h4 {
+        font-size: 1rem;
+    }
+
+    .skill-card p {
+        font-size: 0.9rem;
+    }
+
+    /* ダークモード調整 */
+    body.dark-mode .container {
+        background-color: #333;
+    }
+
+    /* スマホ・タブレット用ボタン調整 */
+    #resetFilters {
+        padding: 8px 20px;
+    }
+}
+
+/* 画面幅が480px以下（小さなスマホ用） */
+@media screen and (max-width: 480px) {
+    /* コンテナの幅をさらに広げる */
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 18px; /* 見出しのサイズをさらに小さく */
+    }
+
+    /* 入力フォームのスタイル */
+    input[type="text"],
+    select {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    /* メニューアイコンのスタイル */
+    .menu-toggle {
+        top: 10px; /* 上に配置 */
+        left: 10px; /* 左に配置 */
+    }
+
+    /* 結果カードのレイアウト調整 */
+    .result-container {
+        grid-template-columns: 1fr; /* 1列にする */
+        gap: 10px;
+    }
+
+    /* スキルカードのパディング調整 */
+    .skill-card {
+        padding: 8px;
+    }
+
+    .skill-card h4 {
+        font-size: 0.9rem; /* スキル名のフォントサイズを小さく */
+    }
+
+    .skill-card p {
+        font-size: 0.8rem; /* スキル内容のフォントサイズを小さく */
+    }
+
+    /* ダークモード調整 */
+    body.dark-mode .container {
+        background-color: #222;
+    }
+}
