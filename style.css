@@ -4,20 +4,18 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
-    box-sizing: border-box; /* パディングとボーダーを含めてサイズ調整 */
 }
 
 /* コンテナのスタイル */
 .container {
-    width: 100%;
-    max-width: 800px;  /* 最大幅を800pxに制限 */
+    width: 90%;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    box-sizing: border-box;
 }
 
 /* 見出しのスタイル */
@@ -54,11 +52,43 @@ button {
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
-    box-sizing: border-box;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+.search-summary {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.search-summary p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+#resetFilters {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#resetFilters:hover {
+    background-color: #0056b3;
+}
+
+#resetFilters.hidden {
+    display: none;
 }
 
 /* 結果表示部分 */
@@ -69,7 +99,7 @@ button:hover {
 /* 結果コンテナ（カードの格納） */
 .result-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* レスポンシブなグリッドレイアウト */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 20px;
 }
@@ -86,12 +116,17 @@ button:hover {
     flex-direction: column;
 }
 
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 /* 武将名 */
 .result-card h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #333;
-    text-align: center; 
+    text-align: center; /* 武将名を中央揃え */
 }
 
 /* スキルセクション */
@@ -107,7 +142,20 @@ button:hover {
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #007bff;
+    border-left: 5px solid #007bff; /* 追加: 左縁を青色に */
+}
+
+/* スキル名 */
+.skill-card h4 {
+    font-size: 1.2rem;
+    color: #007bff; /* 青字 */
+    margin-bottom: 8px;
+}
+
+/* スキル内容 */
+.skill-card p {
+    font-size: 1rem;
+    color: #333; /* 黒字 */
 }
 
 /* メニューアイコンのスタイル */
@@ -120,47 +168,78 @@ button:hover {
     cursor: pointer;
     position: fixed;
     top: 20px;
-    left: 20px; 
-    z-index: 1500; 
-    background-color: #333;
-    padding: 5px; 
-    border-radius: 5px;
+    left: 20px; /* アイコンを画面左上に配置 */
+    z-index: 1500; /* アイコンを最前面に表示 */
+    background-color: #333; /* メニューと統一された背景色 */
+    padding: 5px; /* アイコンの周囲にスペースを追加 */
+    border-radius: 5px; /* アイコンに丸みを付ける */
+}
+
+/* バーのスタイル */
+.menu-toggle .bar {
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease; /* アニメーションでスムーズに変更 */
+    width: 100%; /* バーがアイコンの幅に合わせる */
 }
 
 /* メニューのスタイル */
 .menu {
     position: fixed;
-    top: 60px;
-    left: -250px; 
-    width: 250px; 
-    height: calc(100% - 60px); 
+    top: 60px; /* メニューの開始位置をアイコンの下に配置 */
+    left: -250px; /* 初期状態ではメニューが画面外に隠れる */
+    width: 250px; /* メニューの幅 */
+    height: calc(100% - 60px); /* メニューの高さをアイコンの下から画面いっぱいに表示 */
     background-color: #333;
     color: white;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease-in-out; 
-    z-index: 1000; 
+    transition: left 0.3s ease-in-out; /* メニューがスライドするアニメーション */
+    z-index: 1000; /* メニューはアイコンの下に表示される */
+}
+
+/* メニューの内容 */
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.menu ul li:hover {
+    background-color: #555;
 }
 
 /* メニューが開いている状態 */
 .menu.open {
-    left: 0;
+    left: 0; /* メニューが画面にスライドイン */
 }
 
 /* メニューアイコンが開いた状態 */
 .menu-toggle.open .bar:nth-child(1) {
-    transform: rotate(45deg); 
+    transform: rotate(45deg); /* 上のバーを45度回転 */
     position: relative;
-    top: 8px; 
+    top: 8px; /* 上のバーの位置を調整 */
 }
 
 .menu-toggle.open .bar:nth-child(2) {
-    opacity: 0; 
+    opacity: 0; /* 中央のバーを非表示 */
 }
 
 .menu-toggle.open .bar:nth-child(3) {
-    transform: rotate(-45deg); 
+    transform: rotate(-45deg); /* 下のバーを-45度回転 */
     position: relative;
-    top: -9px;
+    top: -9px; /* 下のバーの位置を調整 */
 }
 
 /* ダークモード */
@@ -180,33 +259,4 @@ body.dark-mode .menu {
 body.dark-mode button {
     background-color: #555;
     color: white;
-}
-
-/* メディアクエリ: スマホや小さな画面に対応 */
-@media (max-width: 600px) {
-    /* コンテナの幅を100%に調整 */
-    .container {
-        width: 100%;
-        padding: 15px;
-    }
-
-    /* メニューアイコンを画面の右上に配置 */
-    .menu-toggle {
-        left: 15px;
-        top: 15px;
-    }
-
-    /* メニューの幅を100%に調整 */
-    .menu {
-        width: 100%;
-    }
-
-    /* レスポンシブなカードレイアウト */
-    .result-container {
-        grid-template-columns: 1fr; /* スマホでは1列に表示 */
-    }
-
-    .result-card {
-        padding: 15px;
-    }
 }
