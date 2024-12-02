@@ -260,3 +260,12 @@ body.dark-mode button {
     background-color: #555;
     color: white;
 }
+
+#password-protect {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
