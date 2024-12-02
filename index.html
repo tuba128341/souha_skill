@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="password-protect">
+        <h3>スキル検索結果を閲覧するにはパスワードが必要です。</h3>
+        <input type="password" id="password-input" placeholder="パスワードを入力">
+        <button id="password-submit">送信</button>
+        <p id="password-error" style="color: red; display: none;">パスワードが間違っています。</p>
+    </div>
+    
     <!-- メニューアイコン -->
     <div id="menu-toggle" class="menu-toggle">
         <div class="bar"></div>
@@ -22,37 +29,60 @@
             <li><a href="#" id="toggleDarkMode">ダークモード</a></li>
         </ul>
     </div>
+    
+    <div id="search-results" style="display: none;">
+        <div class="container">
+             <h1>武将検索</h1>
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="武将名またはスキル名、スキル内容で検索">
+                <select id="countrySelect">
+                    <option value="">全ての国</option>
+                    <option value="秦">秦</option>
+                    <option value="趙">趙</option>
+                    <option value="魏">魏</option>
+                    <option value="楚">楚</option>
+                    <option value="韓">韓</option>
+                    <option value="斉">斉</option>
+                    <option value="燕">燕</option>
+                    <option value="山の民">山の民</option>
+                    <option value="毐">毐</option>
+                </select>
+                <button type="submit">検索</button>
+            </form>
 
-    <div class="container">
-        <h1>武将検索</h1>
-        <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="武将名またはスキル名、スキル内容で検索">
-            <select id="countrySelect">
-                <option value="">全ての国</option>
-                <option value="秦">秦</option>
-                <option value="趙">趙</option>
-                <option value="魏">魏</option>
-                <option value="楚">楚</option>
-                <option value="韓">韓</option>
-                <option value="斉">斉</option>
-                <option value="燕">燕</option>
-                <option value="山の民">山の民</option>
-                <option value="毐">毐</option>
-            </select>
-            <button type="submit">検索</button>
-        </form>
+            <div class="search-summary">
+                <p id="searchConditions"></p>
+                <button id="resetFilters" class="hidden">フィルタを解除</button>
+            </div>
 
-        <div class="search-summary">
-            <p id="searchConditions"></p>
-            <button id="resetFilters" class="hidden">フィルタを解除</button>
-        </div>
-
-        <div id="results" class="results">
-            <!-- 検索結果がここに表示される -->
+            <div id="results" class="results">
+                <!-- 検索結果がここに表示される -->
+            </div>
         </div>
     </div>
 
     <script>
+        //パスワード処理
+        const correctPassword = "1111"; // 正しいパスワード
+        const passwordInput = document.getElementById("password-input");
+        const passwordSubmit = document.getElementById("password-submit");
+        const passwordError = document.getElementById("password-error");
+        const passwordProtect = document.getElementById("password-protect");
+        const searchResults = document.getElementById("search-results");
+
+        passwordSubmit.addEventListener("click", () => {
+            const enteredPassword = passwordInput.value;
+
+            if (enteredPassword === correctPassword) {
+                // パスワードが正しい場合
+                passwordProtect.style.display = "none"; // パスワードフォームを非表示
+                searchResults.style.display = "block"; // 検索結果を表示
+            } else {
+                // パスワードが間違っている場合
+                passwordError.style.display = "block"; // エラーメッセージを表示
+            }
+        });
+
         // ダークモード切り替えの処理
         const toggleDarkModeButton = document.getElementById('toggleDarkMode');
 
